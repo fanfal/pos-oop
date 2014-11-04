@@ -1,6 +1,6 @@
 //this function is returning the idcode without front 0
 function get_idCode_of_product(str){
-return parseInt(str.substr(str.lastIndexOf('0'+1,10)));
+return parseInt(str.substr(str.lastIndexOf('0',10)));
 }
 
 function get_broughted_number_of_product(store,input)
@@ -10,8 +10,10 @@ function get_broughted_number_of_product(store,input)
 
    if(input[i].length > 10)
     {
+
        store[get_idCode_of_product(input[i])].buy +=
        parseInt(input[i].substr(11));
+
     }
    else if (input[i].length == 10)
     {
@@ -24,7 +26,7 @@ function get_broughted_number_of_product(store,input)
   }
   return store;
 }
-//this function get the broughted numver of one identified product 
+//this function get the broughted numver of one identified product
 function get_the_discount_number_of_product(store,type,loadMessage)
 {
   var location;
@@ -76,11 +78,11 @@ function printInventory(input)
     }
   ];
 
-    store = get_broughted_number_of_product(store,input);
+
+    get_broughted_number_of_product(store,input);
     var twoSendOne = loadPromotions();
     var allItems = loadAllItems();
-
-    store = get_the_discount_number_of_product(store,'BUY_TWO_GET_ONE_FREE',twoSendOne);
+    get_the_discount_number_of_product(store,'BUY_TWO_GET_ONE_FREE',twoSendOne);
 
 
     var string = '***<没钱赚商店>购物清单***\n';
@@ -124,16 +126,5 @@ function printInventory(input)
    }
     var temptString = string+sendString+'----------------------\n'+'总计：'+totalValue.toFixed(2)+'(元)\n'+'节省：'+saveValue.toFixed(2)+'(元)\n'+'**********************';
     console.log(temptString);
+
  }
-function loadPromotions() {
-    return [
-        {
-            type: 'BUY_TWO_GET_ONE_FREE',
-            barcodes: [
-                'ITEM000000',
-                'ITEM000001',
-                'ITEM000005'
-            ]
-        }
-    ]
-}
