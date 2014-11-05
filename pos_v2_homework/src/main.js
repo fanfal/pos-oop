@@ -52,15 +52,9 @@ function get_the_discount_number_of_product(store,type,loadMessage)
 }
 function print_the_title_of_list()
 {
-/*  var time = new Date(),
-  year = dateDigitToString(time.getFullYear()),
-  month = dateDigitToString(time.getMonth()),
-  date = dateDigitToString(time.getDate()),
-  hour = dateDigitToString(time.getHours()),
-  minute = dateDigitToString(time.getMinutes()),
-  second = dateDigitToString(time.getSeconds()),
-  string = year + '年' + month + '月' + date + '日' + hour + ‘：’ + minute + ‘：’ + second;*/
-  return  '***<没钱赚商店>购物清单***\n';
+  var time = new Time();
+
+  return  '***<没钱赚商店>购物清单***\n' + time.string + '\n' + print_the_seperate_line("-");
 }
 function print_the_seperate_line(str)
 {
@@ -77,6 +71,22 @@ function print_the_seperate_line(str)
       alert("please check the parameter of the function of print_the_title_of_list and make sure that is - or *");
     }
 }
+
+function Time()
+{
+  var time = new Date();
+  dateDigitToString = function(num){
+    return num < 10 ? '0' + num : num;
+  }
+  var year = dateDigitToString(time.getFullYear());
+  var month = dateDigitToString(time.getMonth()+1);
+  var date = dateDigitToString(time.getDate());
+  var hour = dateDigitToString(time.getHours());
+  var minute = dateDigitToString(time.getMinutes());
+  var second = dateDigitToString(time.getSeconds());
+  this.string = '打印时间：'+ year + '年' + month + '月' + date + '日 ' + hour + ':' + minute + ':' + second;
+}
+
 function printInventory(input)
 {
   var store = [
